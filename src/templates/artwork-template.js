@@ -9,7 +9,7 @@ const artworkTemplate = ({ data }) => {
     <div>
     <Title data={node.data} />
     <Description data={node.data} />
-    <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/">Go to Home</Link>
     </div>
   )
 }
