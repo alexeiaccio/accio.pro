@@ -1,5 +1,3 @@
-import { map, concat, compose, pipe, joinWith } from 'sanctuary'
-
 const SerializeHTML = (html) => {  
   const parseParagraph = (node) => {
     let text = node.text
@@ -38,7 +36,7 @@ const SerializeHTML = (html) => {
         return ''
     }
   }
-  return map(compose(joinWith(''), map(parseNode)))(html)
+  return html.map(parseNode).join('')
 }
 
 export default SerializeHTML
