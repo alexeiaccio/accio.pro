@@ -18,7 +18,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
                   title {
                     type
                     text
-                  }          
+                  }
+                  image {            
+                    url
+                    dimensions {
+                      width
+                      height
+                    }
+                  }       
                   description {
                     richtext {              
                       type
