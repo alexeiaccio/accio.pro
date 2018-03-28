@@ -1,0 +1,32 @@
+import React from 'react'
+import SerializeHTML from '../utils/serialize-html'
+import s4 from '../utils/s4'
+
+
+export default (data) => (
+  <p key={s4()} dangerouslySetInnerHTML={{__html: SerializeHTML(data).richtext}}/>
+)
+
+export const query = graphql`
+  fragment RichTextFragment on PrismicDocument {
+    richtext {
+      type
+      text
+      spans {
+        start
+        end
+        type
+        data {
+          link_type
+          url
+          target
+        }
+      }
+      url
+      dimensions {
+        width
+        height
+      }
+    }    
+  }
+`
