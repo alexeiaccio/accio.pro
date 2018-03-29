@@ -7,9 +7,13 @@
     "gatsby": "^1.9.241",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
+    "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-source-prismic": "^0.1.4",
     "react-helmet": "^5.2.0",
-    "sanctuary": "^0.14.1"
+    "react-motion": "^0.5.2",
+    "react-skroll": "^0.4.3",
+    "sanctuary": "^0.14.1",
+    "styled-components": "^3.2.3"
   },
   "keywords": [
     "gatsby"
