@@ -14,39 +14,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             edges {
               node  {
                 slugs
-                data {
-                  title {
-                    type
-                    text
-                  }
-                  image {            
-                    url
-                    dimensions {
-                      width
-                      height
-                    }
-                  }       
-                  description {
-                    richtext {              
-                      type
-                      text
-                      spans {
-                        start
-                        end
-                        type
-                        data {
-                          url
-                          target
-                        }
-                      }
-                      url
-                      dimensions {
-                        width
-                        height
-                      }
-                    }
-                  }
-                }
               }
             }
           }
