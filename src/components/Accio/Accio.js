@@ -16,13 +16,13 @@ export default class Accio extends React.Component {
   constructor(props) {
     super(props)
     this.state = {mouseX: 0, mouseY: 0, now: 't' + 0}
-  }  
+  }
 
   handleMouseMove = ({ pageX, target: { offsetLeft } }) => {
     this.setState(() => ({
         mouseX: this.state.mouseY + pageX/10 - offsetLeft - 75,
         now: 't' + Date.now(),
-    }))    
+    }))
   }
 
   handleWheel = ({deltaY}) => {
@@ -33,7 +33,7 @@ export default class Accio extends React.Component {
   }
 
   handleScroll = (e) => {
-    console.log(e)    
+    console.log(e)
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ export default class Accio extends React.Component {
       opacity: spring(0, leavingSpringConfig),
     }
   }
-  
+
   render() {
     const {mouseX, mouseY, now} = this.state
     const styles = mouseX == null ? [] : [{
@@ -61,7 +61,7 @@ export default class Accio extends React.Component {
         y: spring(mouseY),
       }
     }]
-    
+
     return (
       <TransitionMotion willLeave={this.willLeave} styles={styles}>
         {accios =>
@@ -70,7 +70,7 @@ export default class Accio extends React.Component {
             onMouseMove={this.handleMouseMove}
           >
           {accios.map(({key, style: {opacity, x, y}}) =>
-            <div 
+            <div
               key={key}
               style={{
                 position: `absolute`,
@@ -82,7 +82,7 @@ export default class Accio extends React.Component {
                 <AccioSVG />
               </div>
             )}
-          </Container>          
+          </Container>
         }
       </TransitionMotion>
     )

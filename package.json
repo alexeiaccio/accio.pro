@@ -10,6 +10,7 @@
     "gatsby-plugin-styled-components": "^2.0.11",
     "gatsby-source-prismic": "^0.1.4",
     "react-helmet": "^5.2.0",
+    "react-lazyload": "^2.3.0",
     "react-motion": "^0.5.2",
     "react-skroll": "^0.4.3",
     "sanctuary": "^0.14.1",
