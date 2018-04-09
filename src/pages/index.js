@@ -11,7 +11,9 @@ const IndexPage = ({ data }) => {
   return (
     <div>
     <Title data={homepage.data} />
-    <WavePattern />
+    <div>
+    <WavePattern style={{display: 'inline-block'}}/>
+    </div>
     {/* <Description data={homepage.data} />
     <AllArtwork node={artworks} /> */}
     <Link to="/page-2/">Go to page 2</Link>
