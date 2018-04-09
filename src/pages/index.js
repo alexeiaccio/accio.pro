@@ -3,6 +3,7 @@ import Link from 'gatsby-link'
 import Title from '../components/Title'
 import Description from '../components/Description'
 import AllArtwork from '../components/AllArtwork'
+import WavePattern from '../components/WavePattern'
 
 const IndexPage = ({ data }) => {
   const homepage = data.homepage.edges[0].node
@@ -10,8 +11,9 @@ const IndexPage = ({ data }) => {
   return (
     <div>
     <Title data={homepage.data} />
-    <Description data={homepage.data} />
-    <AllArtwork node={artworks} />
+    <WavePattern />
+    {/* <Description data={homepage.data} />
+    <AllArtwork node={artworks} /> */}
     <Link to="/page-2/">Go to page 2</Link>
     </div>
   )
