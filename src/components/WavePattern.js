@@ -32,11 +32,11 @@ class WavePattern extends React.Component {
 
   render() {
     return (
-      <div
+      <div style={{width: '2250px'}}
         onMouseEnter={this.handlerMouseEnter}
         onMouseLeave={this.handlerMouseLeave} >
-      {Array.from({length: 4}).map((_, i) =>
-        <svg key={i} width="225" height="307" viewBox="0 0 225 307" xmlns="http://www.w3.org/2000/svg">
+      {Array.from({length: 10}).map((_, i) =>
+        <svg key={i} style={{display: 'inline-block'}} width="225" height="307" viewBox="0 0 225 307" xmlns="http://www.w3.org/2000/svg">
           <style>
           { `.classA { fill:${this.state.fill};transform-style:preserve-3d; }` }
           </style>
