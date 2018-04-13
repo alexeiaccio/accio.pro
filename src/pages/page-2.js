@@ -18,9 +18,12 @@ const Example = () => (
         modifiers={{ preventOverflow: { enabled: false } }}
         eventsEnabled={true}
         positionFixed={false}>
-        {({ placement, ref, style }) => (
+        {({ placement, ref, style, arrowProps }) => (
           <div ref={ref} style={style} data-placement={placement}>
             Popper
+            <div ref={arrowProps.ref} style={arrowProps.style}>
+              <div style={{width:'10px', height: '10px', borderRadius: '50%', background: 'red'}}></div>
+            </div>
           </div>
         )}
       </Popper>,
