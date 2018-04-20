@@ -10,12 +10,24 @@ const SVGWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
+  overflow: hidden;
+  transition: all .4s ease-in-out;
+  opacity: 0;
+  &.mount {
+    opacity: 1;
+  }
 `
 
 const StyledSVG = styled.svg`
   width: 100%;
   height: auto;
+  flex: 0 0 100%;
   transform: translateY(-15%);
+  &.vertical {
+    min-width: 100vh;
+    transform: rotateZ(-90deg) translateY(-10%);
+  }
   & .animated {
     filter: url(#hue) url(#blur);
   }
@@ -25,17 +37,38 @@ class AccioSVG extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hue: 0
+      hue: 0,
+      mount: false,
+      isVertical: false
     }
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.updateWindowDimensions)
     const intervalId = setInterval(this.keyframe, 400)
-    this.setState({intervalId: intervalId})
+    this.setState({
+      intervalId: intervalId,
+      mount: true,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      isVertical: window.innerHeight / window.innerWidth > 1 ? true : false
+    })
   }
 
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  getOrientation = () =>
+    this.state.height / this.state.width > 1 ? true : false
+
+  updateWindowDimensions = () => {
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      isVertical: this.getOrientation()
+    })
   }
 
   keyframe = () => {
@@ -44,8 +77,8 @@ class AccioSVG extends Component {
 
   render() {
     return (
-      <SVGWrapper>
-        <StyledSVG width='1440' height='1024' viewBox='0 0 1440 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' >
+      <SVGWrapper className={this.state.mount && 'mount'} >
+        <StyledSVG viewBox='0 0 1440 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' className={this.state.isVertical && 'vertical'} >
           <g id='Canvas' transform='translate(967 150)'>
             <g id='shade' className='animated' transform='translate(-1010, 30)'>
               <ellipse cx='191.635' cy='277.478' rx='191.635' ry='277.478' transform='matrix(0.930532 -0.366211 0.366211 0.930532 218 313.358)' fill='url(#paint0_radial)'/>
