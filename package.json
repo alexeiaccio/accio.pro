@@ -1,22 +1,17 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "accio-pro",
+  "description": "Accio",
+  "version": "0.1.0",
+  "author": "Alexei Accio <ciao@accio.pro>",
   "dependencies": {
     "gatsby": "^1.9.241",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
     "gatsby-plugin-react-next": "^1.0.11",
     "gatsby-plugin-styled-components": "^2.0.11",
-    "gatsby-source-prismic": "^0.1.4",
     "react-helmet": "^5.2.0",
-    "react-lazyload": "^2.3.0",
-    "react-motion": "^0.5.2",
-    "react-popper": "^1.0.0-beta.5",
-    "react-skroll": "^0.4.3",
-    "sanctuary": "^0.14.1",
-    "styled-components": "^3.2.3"
+    "styled-components": "^3.2.3",
+    "styled-reset": "^1.3.3"
   },
   "keywords": [
     "gatsby"
