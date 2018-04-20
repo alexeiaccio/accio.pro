@@ -15,7 +15,7 @@ const SVGWrapper = styled.div`
 const StyledSVG = styled.svg`
   width: 100%;
   height: auto;
-  transform: translateY(-20%);
+  transform: translateY(-15%);
   & .animated {
     filter: url(#hue) url(#blur);
   }
