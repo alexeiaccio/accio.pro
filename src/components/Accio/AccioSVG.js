@@ -45,6 +45,7 @@ class AccioSVG extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions)
+    window.addEventListener('onorientationchange', this.updateWindowDimensions)
     const intervalId = setInterval(this.keyframe, 400)
     this.setState({
       intervalId: intervalId,
@@ -58,6 +59,7 @@ class AccioSVG extends Component {
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
     window.removeEventListener('resize', this.updateWindowDimensions)
+    window.removeEventListener('onorientationchange', this.updateWindowDimensions)
   }
 
   getOrientation = () =>
