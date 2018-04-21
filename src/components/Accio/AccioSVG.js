@@ -19,6 +19,13 @@ const SVGWrapper = styled.div`
   }
 `
 
+const Float = styled.div`
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  z-index: 9000;
+`
+
 const StyledSVG = styled.svg`
   width: 100%;
   height: auto;
@@ -45,6 +52,7 @@ class AccioSVG extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.updateWindowDimensions)
+    window.addEventListener('onorientationchange', this.updateWindowDimensions)
     const intervalId = setInterval(this.keyframe, 400)
     this.setState({
       intervalId: intervalId,
@@ -58,6 +66,7 @@ class AccioSVG extends Component {
   componentWillUnmount() {
     clearInterval(this.state.intervalId)
     window.removeEventListener('resize', this.updateWindowDimensions)
+    window.removeEventListener('onorientationchange', this.updateWindowDimensions)
   }
 
   getOrientation = () =>
@@ -78,6 +87,7 @@ class AccioSVG extends Component {
   render() {
     return (
       <SVGWrapper className={this.state.mount && 'mount'} >
+        <Float>Width: { this.state.width }, height: { this.state.height }</Float>
         <StyledSVG viewBox='0 0 1440 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' className={this.state.isVertical && 'vertical'} >
           <g id='Canvas' transform='translate(967 150)'>
             <g id='shade' className='animated' transform='translate(-1010, 30)'>
