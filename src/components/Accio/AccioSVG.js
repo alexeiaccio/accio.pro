@@ -62,14 +62,11 @@ class AccioSVG extends Component {
     window.removeEventListener('onorientationchange', this.updateWindowDimensions)
   }
 
-  getOrientation = () =>
-    this.state.height / this.state.width > 1 ? true : false
-
   updateWindowDimensions = () => {
     this.setState({
       width: window.innerWidth,
       height: window.innerHeight,
-      isVertical: this.getOrientation()
+      isVertical: window.innerHeight / window.innerWidth > 1 ? true : false
     })
   }
 
