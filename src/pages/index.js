@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import Helmet from 'react-helmet'
 import styled from 'styled-components'
 
 import AccioSVG from '../components/Accio/AccioSVG'
@@ -20,9 +21,16 @@ const MailMe = styled.a`
   }
 `
 
-const IndexPage = () => {
+const IndexPage = ({ data: { homepage: { data } } }) => { 
   return (
     <Fragment>
+      <Helmet
+        title={data.title[0].text}
+        meta={[
+          { name: 'description', content: data.seodescription },
+          { name: 'keywords', content: data.seokeywords },
+        ]}
+      />
       <AccioSVG />
       <MailMe href='mailto:ciao@accio.pro'>
         ciao@accio.pro
@@ -32,3 +40,17 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query IndexQuery {
+    homepage: prismicDocument(type: {eq: "homepage"}) {
+      data {
+        title {
+          text
+        }
+        seodescription
+        seokeywords
+      }
+    }
+  }
+`

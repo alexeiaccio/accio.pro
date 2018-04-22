@@ -6,7 +6,7 @@ import baseStyles from './base-styles'
 const TemplateWrapper = ({ children }) => (
   <Fragment>
     <Helmet
-      title="Accio"
+      title='Accio'
       meta={[
         { name: 'description', content: 'Accio' },
         { name: 'keywords', content: 'Accio' },
