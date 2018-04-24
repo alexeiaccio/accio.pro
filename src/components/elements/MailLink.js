@@ -15,7 +15,6 @@ const AnimatedLink = styled.a.attrs({
   align-items: center;
   font-family: sans-serif;
   font-size: 3rem;
-  color: #000;
   text-decoration: none;
   transition: all .6 ease-in-out;
 `
@@ -25,15 +24,15 @@ class MailLink extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      x: 0,
-      y: 0
+      x: 240,
+      y: 50
     }
   }
 
   handlerMouseMove = ({pageX, pageY}) => {
     this.setState({
-      x: pageX,
-      y: pageY
+      x: pageX + 100,
+      y: pageY + 100
     })
   }
 
@@ -46,13 +45,13 @@ class MailLink extends Component {
   render() {
     const { url } = this.props
     const style = {
-      r: spring(this.state.x, presets.gentle),
+      b: spring(this.state.x, presets.gentle),
       g: spring(this.state.y, presets.gentle)
     }
 
     return (
       <Motion
-        defaultStyle={{ r: 0, g: 0 }}
+        defaultStyle={{ b: 240, g: 50 }}
         style={style}
       >
       {color =>
@@ -61,7 +60,7 @@ class MailLink extends Component {
           onMouseMove={this.handlerMouseMove}
           onTouchMove={this.handleTouchMove}
           style={{
-            color: `rgb(${Math.floor(color.r % 255)}, ${Math.floor(color.g % 255)}, 0)`
+            color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
           }}
         >
         { url.replace('mailto:', '') }
