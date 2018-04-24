@@ -24,7 +24,8 @@ const StyledSVG = styled.svg`
   width: 100%;
   height: auto;
   flex: 0 0 100%;
-  transform: translateY(-15%);
+  transition: transform .4s ease-in-out;
+  transform: rotateZ(0deg) translateY(-15%);
   &.vertical {
     min-width: 100vh;
     transform: rotateZ(-90deg) translateY(-10%);
