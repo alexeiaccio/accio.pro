@@ -1,27 +1,12 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 
-import AccioSVG from '../components/Accio/AccioSVG'
+import {
+  AccioSVG,
+  MailLink
+} from 'Elements'
 
-const MailMe = styled.a`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  font-size: 3rem;
-  color: #000;
-  text-decoration: none;
-  transition: all .6 ease-in-out;
-  &:hover {
-    color: cyan;
-  }
-`
-
-const IndexPage = ({ data: { homepage: { data } } }) => { 
+const IndexPage = ({ data: { homepage: { data } } }) => {
   return (
     <Fragment>
       <Helmet
@@ -32,9 +17,7 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
         ]}
       />
       <AccioSVG />
-      <MailMe href='mailto:ciao@accio.pro'>
-        ciao@accio.pro
-      </MailMe>
+      <MailLink url={data.maillink.url} />
     </Fragment>
   )
 }
@@ -47,6 +30,9 @@ export const query = graphql`
       data {
         title {
           text
+        }
+        maillink {
+          url
         }
         seodescription
         seokeywords
