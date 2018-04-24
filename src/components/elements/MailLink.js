@@ -29,7 +29,7 @@ class MailLink extends Component {
     }
   }
 
-  handlerMouseMove = ({pageX, pageY}) => {
+  handleMouseMove = ({pageX, pageY}) => {
     this.setState({
       x: pageX + 100,
       y: pageY + 100
@@ -37,7 +37,6 @@ class MailLink extends Component {
   }
 
   handleTouchMove = (e) => {
-    e.preventDefault()
     this.handleMouseMove(e.touches[0])
   }
 
@@ -57,8 +56,9 @@ class MailLink extends Component {
       {color =>
         <AnimatedLink
           href={url}
-          onMouseMove={this.handlerMouseMove}
+          onMouseMove={this.handleMouseMove}
           onTouchMove={this.handleTouchMove}
+          onTouchStart={this.handleTouchMove}
           style={{
             color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
           }}
