@@ -1,11 +1,8 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
-
 import { AccioSVG } from 'Blocks'
 import { MailLink } from 'Elements'
-
-
 
 const IndexPage = ({ data: { homepage: { data } } }) => {
   return (
