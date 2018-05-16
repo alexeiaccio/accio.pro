@@ -17,7 +17,13 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
         ]}
       />
       <AccioSVG />
-      <MailLink url={data.maillink.url} />
+      <MailLink
+        url={data.maillink.url}
+        definitions={{
+          sites: data.definitionssites,
+          list: data.definitionslist
+        }}
+      />
     </Fragment>
   )
 }
@@ -33,6 +39,10 @@ export const query = graphql`
         }
         maillink {
           url
+        }
+        definitionssites
+        definitionslist {
+          text
         }
         seodescription
         seokeywords

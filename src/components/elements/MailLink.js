@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
+import { throttle } from 'Helpers'
+
 const AnimatedLink = styled.a.attrs({
   style: ({ color }) => ({
     color
@@ -19,13 +21,15 @@ const AnimatedLink = styled.a.attrs({
   transition: all .6 ease-in-out;
 `
 
+const throttleSec = throttle(1000)
 
 class MailLink extends Component {
   constructor(props) {
     super(props)
     this.state = {
       x: 240,
-      y: 50
+      y: 50,
+      def: 0
     }
   }
 
@@ -34,6 +38,10 @@ class MailLink extends Component {
       x: pageX + 100,
       y: pageY + 100
     })
+
+    throttleSec(this.setState({
+      def: pageX * pageY % this.props.definitions.list.length
+    }))
   }
 
   handleTouchMove = (e) => {
@@ -42,7 +50,7 @@ class MailLink extends Component {
 
 
   render() {
-    const { url } = this.props
+    const { url, definitions } = this.props
     const style = {
       b: spring(this.state.x, presets.gentle),
       g: spring(this.state.y, presets.gentle)
@@ -63,7 +71,7 @@ class MailLink extends Component {
             color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
           }}
         >
-        { url.replace('mailto:', '') }
+        { `${definitions.list[this.state.def].text} ${definitions.sites}` }
         </AnimatedLink>
       }
       </Motion>
