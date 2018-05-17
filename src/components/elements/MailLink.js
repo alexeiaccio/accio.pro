@@ -2,12 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
-<<<<<<< HEAD
-import { sleep } from 'Helpers'
-import Definition from './Definition'
-=======
 import { tickFuctory } from 'Helpers'
->>>>>>> parent of f9c71c9... animated !!
+import Definition from './Definition'
 
 const AnimatedLink = styled.a.attrs({
   style: ({ color }) => ({
@@ -49,11 +45,12 @@ class MailLink extends Component {
       def: Math.floor(0 + Math.random() * this.props.definitions.list.length)
     })
 
-    const tick = async function() {
-      await sleep(3000)
+    const tick = tickFuctory(function*() {
+      let { sleep } = this
+      yield sleep(2000)
       setStateDef()
       tick()
-    }
+    })
 
     tick()
   }
