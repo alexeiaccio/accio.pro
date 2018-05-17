@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
-import { tickFuctory } from 'Helpers'
+import { sleep } from 'Helpers'
 import Definition from './Definition'
 
 const AnimatedLink = styled.a.attrs({
@@ -51,12 +51,11 @@ class MailLink extends Component {
       def: Math.floor(0 + Math.random() * this.props.definitions.list.length)
     })
 
-    const tick = tickFuctory(function*() {
-      let { sleep } = this
-      yield sleep(2000)
+    const tick = async function() {
+      await sleep(3000)
       setStateDef()
       tick()
-    })
+    }
 
     tick()
   }
