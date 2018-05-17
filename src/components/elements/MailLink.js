@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
-import { throttle } from 'Helpers'
+import { tickFuctory } from 'Helpers'
 
 const AnimatedLink = styled.a.attrs({
   style: ({ color }) => ({
@@ -21,7 +21,13 @@ const AnimatedLink = styled.a.attrs({
   transition: all .6 ease-in-out;
 `
 
-const throttleSec = throttle(1000)
+const LineThrough = styled.span.attrs({
+  style: ({ textDecorationColor }) => ({
+    textDecorationColor
+  })
+})`
+  text-decoration: line-through dashed;
+`
 
 class MailLink extends Component {
   constructor(props) {
@@ -33,15 +39,26 @@ class MailLink extends Component {
     }
   }
 
+  componentDidMount = () => {
+    const setStateDef = () => this.setState({
+      def: Math.floor(0 + Math.random() * this.props.definitions.list.length)
+    })
+
+    const tick = tickFuctory(function*() {
+      let { sleep } = this
+      yield sleep(2000)
+      setStateDef()
+      tick()
+    })
+
+    tick()
+  }
+
   handleMouseMove = ({pageX, pageY}) => {
     this.setState({
       x: pageX + 100,
       y: pageY + 100
     })
-
-    throttleSec(this.setState({
-      def: pageX * pageY % this.props.definitions.list.length
-    }))
   }
 
   handleTouchMove = (e) => {
@@ -55,7 +72,7 @@ class MailLink extends Component {
       b: spring(this.state.x, presets.gentle),
       g: spring(this.state.y, presets.gentle)
     }
-
+    const definitionText = definitions.list[this.state.def].text
     return (
       <Motion
         defaultStyle={{ b: 240, g: 50 }}
@@ -71,7 +88,14 @@ class MailLink extends Component {
             color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
           }}
         >
-        { `${definitions.list[this.state.def].text} ${definitions.sites}` }
+        <span>
+        {definitionText.includes('не')
+          ? <LineThrough style={{
+            textDecorationColor: `rgb(${Math.floor(color.b % 255)}, 0, ${Math.floor(color.g % 255)})`
+          }}>{definitionText.replace('не ', '')}</LineThrough>
+          : definitionText
+        }</span>
+        <span> {definitions.sites}</span>
         </AnimatedLink>
       }
       </Motion>

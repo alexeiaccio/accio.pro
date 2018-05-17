@@ -1,1 +1,1 @@
-export { throttle } from './throttle'
+export { tickFuctory } from './tick'
