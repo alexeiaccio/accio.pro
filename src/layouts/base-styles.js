@@ -4,21 +4,11 @@ import reset from 'styled-reset'
 const baseStyles = () => injectGlobal`
   ${reset}
   /* BASE STYLES */
-  :root {
-  --base: 3rem;
-  }
-
-  @media (max-width: 600px) {
-    :root {
-      --base: 1.5rem;
-    }
-  }
 
   body {
     font-family: 'Montserrat';
     font-weight: 400;
-    font-size: var(--base);
-    line-height: var(--base);
+    font-size: 10px;
     color: #261A12;
   }
 

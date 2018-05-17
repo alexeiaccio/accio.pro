@@ -1,9 +1,13 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
+<<<<<<< HEAD
 import { sleep } from 'Helpers'
 import Definition from './Definition'
+=======
+import { tickFuctory } from 'Helpers'
+>>>>>>> parent of f9c71c9... animated !!
 
 const AnimatedLink = styled.a.attrs({
   style: ({ color }) => ({
@@ -14,23 +18,20 @@ const AnimatedLink = styled.a.attrs({
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
-  font-size: var(--base);
+  font-size: 3rem;
   text-decoration: none;
   transition: all .6 ease-in-out;
 `
 
-const Col = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: 50%;
-  &:first-child {
-    text-align: right;
-  }
+const LineThrough = styled.span.attrs({
+  style: ({ textDecorationColor }) => ({
+    textDecorationColor
+  })
+})`
+  text-decoration: line-through dashed;
 `
 
 class MailLink extends Component {
@@ -39,10 +40,7 @@ class MailLink extends Component {
     this.state = {
       x: 240,
       y: 50,
-      def: 0,
-      definitions: [
-        this.props.definitions.list[0]
-      ]
+      def: 0
     }
   }
 
@@ -60,17 +58,6 @@ class MailLink extends Component {
     tick()
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if(prevState.def !== this.state.def) {
-      let newDefinitions = this.state.definitions.slice()
-      newDefinitions.push(this.props.definitions.list[this.state.def])
-      let cuttedDefinitions = newDefinitions.filter((definition, i) => i > 0 && i < 2)
-      this.setState({
-        definitions: cuttedDefinitions
-      })
-    }
-  }
-
   handleMouseMove = ({pageX, pageY}) => {
     this.setState({
       x: pageX + 100,
@@ -82,39 +69,40 @@ class MailLink extends Component {
     this.handleMouseMove(e.touches[0])
   }
 
+
   render() {
     const { url, definitions } = this.props
     const style = {
       b: spring(this.state.x, presets.gentle),
       g: spring(this.state.y, presets.gentle)
     }
-
+    const definitionText = definitions.list[this.state.def].text
     return (
-      <Fragment>
-        <Motion
-          defaultStyle={{ b: 240, g: 50 }}
-          style={style}
+      <Motion
+        defaultStyle={{ b: 240, g: 50 }}
+        style={style}
+      >
+      {color =>
+        <AnimatedLink
+          href={url}
+          onMouseMove={this.handleMouseMove}
+          onTouchMove={this.handleTouchMove}
+          onTouchStart={this.handleTouchMove}
+          style={{
+            color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
+          }}
         >
-        {color =>
-          <AnimatedLink
-            href={`${url}?subject=Хочу%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20сайт`}
-            onMouseMove={this.handleMouseMove}
-            onTouchMove={this.handleTouchMove}
-            onTouchStart={this.handleTouchMove}
-            style={{
-              color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
-            }}
-          >
-            <Col>
-              <Definition definitions={this.state.definitions} color={color} />
-            </Col>
-            <Col>
-              <span> {definitions.sites}</span>
-            </Col>
-          </AnimatedLink>
-        }
-        </Motion>
-      </Fragment>
+        <span>
+        {definitionText.includes('не')
+          ? <LineThrough style={{
+            textDecorationColor: `rgb(${Math.floor(color.b % 255)}, 0, ${Math.floor(color.g % 255)})`
+          }}>{definitionText.replace('не ', '')}</LineThrough>
+          : definitionText
+        }</span>
+        <span> {definitions.sites}</span>
+        </AnimatedLink>
+      }
+      </Motion>
     )
   }
 }
