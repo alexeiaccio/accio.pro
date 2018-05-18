@@ -26,6 +26,10 @@ class Definition extends Component {
     }
   }
 
+  componentDidMount = () => {
+    this.setState({ innerWidth: window.innerWidth })
+  }
+
   componentDidUpdate = (prevProps, prevState) => {
     if(prevState.definitions[0].data.text !== this.props.definitions[0].text) {
       this.setState({
@@ -48,7 +52,7 @@ class Definition extends Component {
       return {
         ...definition,
         style: {
-          height: spring(window.innerWidth < 601 ? 24 : 48, presets.gentle),
+          height: spring(this.state.innerWidth < 601 ? 24 : 48, presets.gentle),
           opacity: spring(1, presets.gentle),
         }
       }

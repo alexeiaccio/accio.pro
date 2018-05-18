@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
-import { tickFuctory } from 'Helpers'
 import Definition from './Definition'
 
 const AnimatedLink = styled.a.attrs({
@@ -46,19 +45,17 @@ class MailLink extends Component {
     }
   }
 
+  keyframe = () => {
+    this.setState({ def: Math.floor(0 + Math.random() * this.props.definitions.list.length) })
+  }
+
   componentDidMount = () => {
-    const setStateDef = () => this.setState({
-      def: Math.floor(0 + Math.random() * this.props.definitions.list.length)
-    })
+    const intervalId = setInterval(this.keyframe, 2000)
+    this.setState({ intervalId: intervalId })
+  }
 
-    const tick = tickFuctory(function*() {
-      let { sleep } = this
-      yield sleep(2000)
-      setStateDef()
-      tick()
-    })
-
-    tick()
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId)
   }
 
   componentDidUpdate = (prevProps, prevState) => {
