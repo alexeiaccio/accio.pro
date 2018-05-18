@@ -6,16 +6,20 @@ import {
   MailLink
 } from 'Elements'
 
+import favicon from './favicon.png'
+
 const IndexPage = ({ data: { homepage: { data } } }) => {
   return (
     <Fragment>
       <Helmet
-        title={data.title[0].text}
+        title={data.seotitle}
         meta={[
           { name: 'description', content: data.seodescription },
           { name: 'keywords', content: data.seokeywords },
         ]}
-      />
+      >
+        <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
+      </Helmet>
       <AccioSVG />
       <MailLink
         url={data.maillink.url}
@@ -44,6 +48,7 @@ export const query = graphql`
         definitionslist {
           text
         }
+        seotitle
         seodescription
         seokeywords
       }
