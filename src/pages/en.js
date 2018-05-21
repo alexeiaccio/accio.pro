@@ -8,7 +8,7 @@ import {
 
 import favicon from './favicon.png'
 
-const IndexPage = ({ data: { homepage: { data } } }) => {
+const EnPage = ({ data: { homepage: { data } } }) => {
   return (
     <Fragment>
       <Helmet
@@ -33,11 +33,11 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
   )
 }
 
-export default IndexPage
+export default EnPage
 
 export const query = graphql`
-  query IndexQuery {
-    homepage: prismicDocument(type: {eq: "homepage"}) {
+  query EnQuery {
+    homepage: prismicDocument(type: {eq: "homepage"}, lang: {eq: "en-us"}) {
       data {
         title {
           text
