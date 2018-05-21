@@ -95,7 +95,7 @@ class MailLink extends Component {
         >
         {color =>
           <AnimatedLink
-            href={`${url}?subject=Хочу%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20сайт`}
+            href={`${url}?subject=${definitions.want}%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20${definitions.sites.replace(/(\w|\W)$/gi, '')}`}
             onMouseMove={this.handleMouseMove}
             onTouchMove={this.handleTouchMove}
             onTouchStart={this.handleTouchMove}

@@ -8,7 +8,7 @@ import {
 
 import favicon from './favicon.png'
 
-const EnUsPage = ({ data: { homepage: { data }, enus } }) => {
+const EnPage = ({ data: { homepage: { data } } }) => {
   return (
     <Fragment>
       <Helmet
@@ -24,19 +24,20 @@ const EnUsPage = ({ data: { homepage: { data }, enus } }) => {
       <MailLink
         url={data.maillink.url}
         definitions={{
-          sites: enus.data.definitionssites,
-          list: enus.data.definitionslist
+          want: data.definitionswant,
+          sites: data.definitionssites,
+          list: data.definitionslist
         }}
       />
     </Fragment>
   )
 }
 
-export default EnUsPage
+export default EnPage
 
 export const query = graphql`
-  query EnUsQuery {
-    homepage: prismicDocument(type: {eq: "homepage"}) {
+  query EnQuery {
+    homepage: prismicDocument(type: {eq: "homepage"}, lang: {eq: "en-us"}) {
       data {
         title {
           text
@@ -44,6 +45,7 @@ export const query = graphql`
         maillink {
           url
         }
+        definitionswant
         definitionssites
         definitionslist {
           text
@@ -51,14 +53,6 @@ export const query = graphql`
         seotitle
         seodescription
         seokeywords
-      }
-    }
-    enus: prismicDocument(lang: {eq: "en-us"}) {
-      data {
-        definitionssites
-        definitionslist {
-          text
-        }
       }
     }
   }

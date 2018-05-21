@@ -89,6 +89,10 @@ class Definition extends Component {
             ? <LineThrough style={{
               textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
             }}>{text.replace('не ', '')}</LineThrough>
+            : text.includes('not')
+            ? <LineThrough style={{
+              textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
+              }}>{text.replace('not ', '')}</LineThrough>
             : text
           }
           </span>

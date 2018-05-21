@@ -24,6 +24,7 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
       <MailLink
         url={data.maillink.url}
         definitions={{
+          want: data.definitionswant,
           sites: data.definitionssites,
           list: data.definitionslist
         }}
@@ -44,6 +45,7 @@ export const query = graphql`
         maillink {
           url
         }
+        definitionswant
         definitionssites
         definitionslist {
           text
