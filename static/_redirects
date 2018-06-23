@@ -1,0 +1,2 @@
+# Redirect default Netlify subdomain to primary domain
+https://accio-pro.netlify.com/* https://beta.accio.pro/:splat 301!

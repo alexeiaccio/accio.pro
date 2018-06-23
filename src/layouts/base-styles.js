@@ -5,7 +5,7 @@ const baseStyles = () => injectGlobal`
   ${reset}
   /* BASE STYLES */
   :root {
-  --base: 3rem;
+  --base: 2rem;
   }
 
   @media (max-width: 600px) {
@@ -20,10 +20,6 @@ const baseStyles = () => injectGlobal`
     font-size: var(--base);
     line-height: var(--base);
     color: #261A12;
-  }
-
-  h1,h2,h3,h4,h5,h6,cite {
-    font-family: 'Podkova'
   }
 `
 

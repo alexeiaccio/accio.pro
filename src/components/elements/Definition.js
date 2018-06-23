@@ -52,7 +52,7 @@ class Definition extends Component {
       return {
         ...definition,
         style: {
-          height: spring(this.state.innerWidth < 601 ? 24 : 48, presets.gentle),
+          height: spring(this.state.innerWidth < 601 ? 24 : 32, presets.gentle),
           opacity: spring(1, presets.gentle),
         }
       }
@@ -93,7 +93,7 @@ class Definition extends Component {
             ? <LineThrough style={{
               textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
               }}>{text.replace('not ', '')}</LineThrough>
-            : text
+            : text.replace(/\W$|\w$/gi, 'й')
           }
           </span>
         )}

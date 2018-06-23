@@ -3,33 +3,32 @@ import styled from 'styled-components'
 import { Motion, spring, presets } from 'react-motion'
 
 import Definition from './Definition'
+import { default as LinkButton } from './LinkButton'
 
-const AnimatedLink = styled.a.attrs({
+const Animated = styled.span.attrs({
   style: ({ color }) => ({
     color
   })
 })`
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  margin-left: 1rem;
+  transition: all .2 ease-in-out;
+`
+
+const Row = styled.div`
+  position: relative;
+  width: auto;
+  height: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-family: sans-serif;
-  font-size: var(--base);
-  text-decoration: none;
-  transition: all .6 ease-in-out;
+  font-size: 2rem;
+  padding: 0 3rem;
 `
 
 const Col = styled.div`
-  flex: 1;
-  width: 100%;
-  max-width: 50%;
-  &:first-child {
-    text-align: right;
-  }
+  
 `
 
 class MailLink extends Component {
@@ -88,31 +87,34 @@ class MailLink extends Component {
     }
 
     return (
-      <Fragment>
-        <Motion
-          defaultStyle={{ b: 240, g: 50 }}
-          style={style}
+      <Row>
+        <Col>
+          <LinkButton 
+            href={`${url}?subject=${definitions.want}%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20${definitions.sites.replace(/(\w|\W)$/gi, '')}`} 
+          >Хочу</LinkButton>
+        </Col>
+        <Col
+          onMouseMove={this.handleMouseMove}
+          onTouchMove={this.handleTouchMove}
+          onTouchStart={this.handleTouchMove}
         >
-        {color =>
-          <AnimatedLink
-            href={`${url}?subject=${definitions.want}%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20${definitions.sites.replace(/(\w|\W)$/gi, '')}`}
-            onMouseMove={this.handleMouseMove}
-            onTouchMove={this.handleTouchMove}
-            onTouchStart={this.handleTouchMove}
-            style={{
-              color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
-            }}
+          <Motion
+            defaultStyle={{ b: 240, g: 50 }}
+            style={style}
           >
-            <Col>
+          {color =>
+            <Animated
+              style={{
+                color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
+              }}
+            >
               <Definition definitions={this.state.definitions} color={color} />
-            </Col>
-            <Col>
-              <span> {definitions.sites}</span>
-            </Col>
-          </AnimatedLink>
-        }
-        </Motion>
-      </Fragment>
+              <span> {definitions.sites.replace(/(\w|\W)$/gi, '')}</span>
+            </Animated>
+          }
+          </Motion>
+        </Col>
+      </Row>
     )
   }
 }
