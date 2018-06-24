@@ -1,18 +1,9 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
-import styled from 'styled-components'
 
 import { MainPage } from 'Blocks'
 
 import favicon from './favicon.png'
-
-const MainWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-between;
-  width: 100wv;
-`
 
 const IndexPage = ({ data: { homepage: { data } } }) => {
   return (
@@ -59,9 +50,16 @@ export const query = graphql`
         maillink {
           url
         }
-        definitionswant
-        definitionssites
-        definitionslist {
+        definitionverbs {
+          type
+          text
+        }
+        definitionadjectives {
+          type
+          text
+        }
+        definitionnouns {
+          type
           text
         }
         seotitle

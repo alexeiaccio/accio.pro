@@ -1,10 +1,7 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
-import {
-  AccioSVG,
-  MailLink
-} from 'Elements'
+import { MainPage } from 'Blocks'
 
 import favicon from './favicon.png'
 
@@ -20,15 +17,7 @@ const EnPage = ({ data: { homepage: { data } } }) => {
       >
         <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       </Helmet>
-      <AccioSVG />
-      <MailLink
-        url={data.maillink.url}
-        definitions={{
-          want: data.definitionswant,
-          sites: data.definitionssites,
-          list: data.definitionslist
-        }}
-      />
+      <MainPage {...{data}} />
     </Fragment>
   )
 }
@@ -42,12 +31,35 @@ export const query = graphql`
         title {
           text
         }
+        description {
+          richtext {
+            type
+            text
+            spans {
+              start
+              end
+              type
+              data {
+                link_type
+                url
+                target
+              }
+            }
+          }
+        }
         maillink {
           url
         }
-        definitionswant
-        definitionssites
-        definitionslist {
+        definitionverbs {
+          type
+          text
+        }
+        definitionadjectives {
+          type
+          text
+        }
+        definitionnouns {
+          type
           text
         }
         seotitle

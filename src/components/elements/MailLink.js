@@ -28,7 +28,6 @@ const Row = styled.div`
 `
 
 const Col = styled.div`
-  
 `
 
 class MailLink extends Component {
@@ -37,15 +36,21 @@ class MailLink extends Component {
     this.state = {
       x: 240,
       y: 50,
-      def: 0,
-      definitions: [
-        this.props.definitions.list[0]
-      ]
+      defV: 0,
+      defA: 0,
+      defN: 0,
+      verb: [ this.props.definitions.verbs[0] ],
+      adj: [ this.props.definitions.adjectives[0] ],
+      noun: [ this.props.definitions.nouns[0] ],
     }
   }
 
   keyframe = () => {
-    this.setState({ def: Math.floor(0 + Math.random() * this.props.definitions.list.length) })
+    this.setState({ 
+      defV: Math.floor(0 + Math.random() * this.props.definitions.verbs.length),
+      defA: Math.floor(0 + Math.random() * this.props.definitions.adjectives.length),
+      defN: Math.floor(0 + Math.random() * this.props.definitions.nouns.length),
+    })
   }
 
   componentDidMount = () => {
@@ -58,12 +63,20 @@ class MailLink extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    if(prevState.def !== this.state.def) {
-      let newDefinitions = this.state.definitions.slice()
-      newDefinitions.push(this.props.definitions.list[this.state.def])
-      let cuttedDefinitions = newDefinitions.filter((definition, i) => i > 0 && i < 2)
+    if(prevState.defA !== this.state.defA) {
+      const newVerb = this.state.verb.slice()
+      newVerb.push(this.props.definitions.verbs[this.state.defV])
+      const cuttedVerb = newVerb.filter((definition, i) => i > 0 && i < 2)
+      const newAdj = this.state.adj.slice()
+      newAdj.push(this.props.definitions.adjectives[this.state.defA])
+      const cuttedAdj = newAdj.filter((definition, i) => i > 0 && i < 2)
+      const newNoun = this.state.noun.slice()
+      newNoun.push(this.props.definitions.nouns[this.state.defN])
+      const cuttedNoun = newNoun.filter((definition, i) => i > 0 && i < 2)
       this.setState({
-        definitions: cuttedDefinitions
+        verb: cuttedVerb,
+        adj: cuttedAdj,
+        noun: cuttedNoun,
       })
     }
   }
@@ -84,14 +97,17 @@ class MailLink extends Component {
     const style = {
       b: spring(this.state.x, presets.gentle),
       g: spring(this.state.y, presets.gentle)
-    }
+    }    
 
     return (
       <Row>
         <Col>
+          <span>С нами у вас получится: </span>
           <LinkButton 
-            href={`${url}?subject=${definitions.want}%20${this.state.definitions[0].text.replace(/\W$/gi, 'й')}%20${definitions.sites.replace(/(\w|\W)$/gi, '')}`} 
-          >Хочу</LinkButton>
+            href={`${url}?subject=Я%20хочу%20${this.state.verb[0].text}%20${this.state.adj[0].text}%20${this.state.noun[0].text}`} 
+          >            
+            <Definition definitions={this.state.verb} color='white' />
+          </LinkButton>
         </Col>
         <Col
           onMouseMove={this.handleMouseMove}
@@ -108,8 +124,9 @@ class MailLink extends Component {
                 color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
               }}
             >
-              <Definition definitions={this.state.definitions} color={color} />
-              <span> {definitions.sites.replace(/(\w|\W)$/gi, '')}</span>
+              <Definition definitions={this.state.adj} color={color} />
+              <span> </span>
+              <Definition definitions={this.state.noun} color={color} />
             </Animated>
           }
           </Motion>

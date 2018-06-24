@@ -24,7 +24,10 @@ export default ({ data }) => (
       definitions={{
         want: data.definitionswant,
         sites: data.definitionssites,
-        list: data.definitionslist
+        list: data.definitionslist,
+        verbs: data.definitionverbs,
+        adjectives: data.definitionadjectives,
+        nouns: data.definitionnouns,
       }}
     />
     <Description description={data.description[1]}/>
