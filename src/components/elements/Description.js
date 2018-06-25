@@ -51,7 +51,7 @@ const FixedTooltip = styled.span`
   left: 5rem;
   max-width: 64rem;
   padding: 3rem;
-  position: fixed;
+  position: absolute;
   right: 5rem;
   top: 5rem;
   z-index: 3000;
