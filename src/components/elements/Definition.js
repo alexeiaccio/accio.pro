@@ -103,7 +103,7 @@ class Definition extends Component {
       {styles =>
         <Container> 
         {styles.map(({key, style, data: {text}}, i) =>
-          <Fragment>            
+          <Fragment key={`fr${i}`} >            
             <span key={i} style={style}>
             {text.includes('не') || text.includes('not')
               ? <DefinitionText>
@@ -113,7 +113,7 @@ class Definition extends Component {
             }
             </span>
             {text.includes('не') || text.includes('not')
-              ? <LineThrough key={i} style={{
+              ? <LineThrough key={`lt${i}`} style={{
                   background: `linear-gradient(165deg, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 45%,rgba(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)},1) 46%,rgba(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)},1) 54%,rgba(255,255,255,0) 55%,rgba(255,255,255,0) 100%)`,
                   opacity: style.opacity
                 }} />

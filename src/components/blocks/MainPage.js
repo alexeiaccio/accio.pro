@@ -15,10 +15,10 @@ const MainWrapper = styled.div`
   width: 100wv;
 `
 
-export default ({ data }) => (
+export default ({ data, whatis }) => (
   <MainWrapper>  
     <AccioSVG />
-    <Description description={data.description[0]}/>
+    <Description description={data.description[0]} {...{whatis}} />
     <MailLink
       url={data.maillink.url}
       definitions={{
@@ -31,6 +31,6 @@ export default ({ data }) => (
         nouns: data.definitionnouns,
       }}
     />
-    <Description description={data.description[1]}/>
+    <Description description={data.description[1]} {...{whatis}} />
   </MainWrapper>
 )

@@ -6,7 +6,7 @@ import { LangSwitcher } from 'Elements'
 
 import favicon from './favicon.png'
 
-const EnPage = ({ data: { homepage: { data } } }) => {
+const EnPage = ({ data: { homepage: { data }, whatis: { edges } } }) => {
   return (
     <Fragment>
       <Helmet
@@ -18,7 +18,7 @@ const EnPage = ({ data: { homepage: { data } } }) => {
       >
         <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       </Helmet>
-      <MainPage {...{data}} />
+      <MainPage {...{data}} whatis={edges} />
       <LangSwitcher to="ru" />
     </Fragment>
   )
@@ -45,6 +45,10 @@ export const query = graphql`
                 link_type
                 url
                 target
+                uid
+                lang
+                isBroken
+                type
               }
             }
           }
@@ -68,6 +72,33 @@ export const query = graphql`
         seotitle
         seodescription
         seokeywords
+      }
+    }
+    whatis: allPrismicDocument(filter: {type: {eq: "whatis"}, lang: {eq: "en-us"}}) {
+      edges {
+        node {
+          uid
+          data {
+            title {
+              type
+              text
+            }
+            description {
+              text
+              type
+              spans {
+                start
+                end
+                type
+                data {
+                  link_type
+                  url
+                  target
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
