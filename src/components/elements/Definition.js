@@ -44,6 +44,7 @@ class Definition extends Component {
       ({...definition, style: {
         height: 0,
         opacity: 1,
+        maxWidth: 1000
       }}))
   }
 
@@ -54,6 +55,7 @@ class Definition extends Component {
         style: {
           height: spring(this.state.innerWidth < 601 ? 24 : 32, presets.gentle),
           opacity: spring(1, presets.gentle),
+          maxWidth: 1000
         }
       }
     })
@@ -63,6 +65,7 @@ class Definition extends Component {
     return {
       height: 0,
       opacity: 1,
+      maxWidth: 1000
     }
   }
 
@@ -70,6 +73,7 @@ class Definition extends Component {
     return {
       height: spring(0, presets.gentle),
       opacity: spring(0, presets.gentle),
+      maxWidth: 0
     }
   }
 
@@ -92,7 +96,7 @@ class Definition extends Component {
             : text.includes('not')
             ? <LineThrough style={{
               textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
-              }}>{text.replace('not ', '')}</LineThrough>
+              }}>{text.replace(/not\s/i, '')}</LineThrough>
             : text
           }
           </span>

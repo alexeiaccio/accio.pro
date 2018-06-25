@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
-import { MainPage } from 'Blocks'
+import { AccioSVG } from 'Elements'
+
 
 import favicon from './favicon.png'
 
@@ -17,55 +18,9 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
       >
         <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       </Helmet>
-      <MainPage {...{data}} />
+      <AccioSVG />
     </Fragment>
   )
 }
 
 export default IndexPage
-
-export const query = graphql`
-  query IndexQuery {
-    homepage: prismicDocument(type: {eq: "homepage"}) {
-      data {
-        title {
-          text
-        }
-        description {
-          richtext {
-            type
-            text
-            spans {
-              start
-              end
-              type
-              data {
-                link_type
-                url
-                target
-              }
-            }
-          }
-        }
-        maillink {
-          url
-        }
-        definitionverbs {
-          type
-          text
-        }
-        definitionadjectives {
-          type
-          text
-        }
-        definitionnouns {
-          type
-          text
-        }
-        seotitle
-        seodescription
-        seokeywords
-      }
-    }
-  }
-`

@@ -4,30 +4,33 @@ import { Motion, spring, presets } from 'react-motion'
 
 import Definition from './Definition'
 import { default as LinkButton } from './LinkButton'
+import { default as OutlineButton } from './OutlineButton'
 
 const Animated = styled.span.attrs({
   style: ({ color }) => ({
     color
   })
-})`
-  margin-left: 1rem;
-  transition: all .2 ease-in-out;
-`
+})``
 
 const Row = styled.div`
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 2rem;
+  height: auto;
+  justify-content: flex-start;
+  padding: 0 3rem;
   position: relative;
   width: auto;
-  height: auto;
+`
+
+const Col = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  align-items: center;
-  font-size: 2rem;
-  padding: 0 3rem;
-`
-
-const Col = styled.div`
 `
 
 class MailLink extends Component {
@@ -100,37 +103,40 @@ class MailLink extends Component {
     }    
 
     return (
-      <Row>
-        <Col>
-          <span>С нами у вас получится: </span>
-          <LinkButton 
-            href={`${url}?subject=Я%20хочу%20${this.state.verb[0].text}%20${this.state.adj[0].text}%20${this.state.noun[0].text}`} 
-          >            
-            <Definition definitions={this.state.verb} color='white' />
-          </LinkButton>
-        </Col>
-        <Col
-          onMouseMove={this.handleMouseMove}
-          onTouchMove={this.handleTouchMove}
-          onTouchStart={this.handleTouchMove}
+      <Row
+        onMouseMove={this.handleMouseMove}
+        onTouchMove={this.handleTouchMove}
+        onTouchStart={this.handleTouchMove}
+      >
+        <Motion
+          defaultStyle={{ b: 240, g: 50 }}
+          style={style}
         >
-          <Motion
-            defaultStyle={{ b: 240, g: 50 }}
-            style={style}
-          >
-          {color =>
+        {color =>
+          <Col>
             <Animated
               style={{
                 color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
-              }}
-            >
+              }}            
+            >{ this.props.definitions.get }</Animated>
+            <span>&nbsp;</span>
+            <LinkButton 
+              href={`${url}?subject=${this.props.definitions.get}%20${this.state.verb[0].text}%20${this.state.adj[0].text}%20${this.state.noun[0].text}`} 
+              color={color}
+            >            
+              <Definition definitions={this.state.verb} color='white' />
+            </LinkButton>
+            <span>&nbsp;</span>   
+            <OutlineButton color={color} >
               <Definition definitions={this.state.adj} color={color} />
-              <span> </span>
+            </OutlineButton>
+            <span>&nbsp;</span>
+            <OutlineButton color={color} >
               <Definition definitions={this.state.noun} color={color} />
-            </Animated>
-          }
-          </Motion>
-        </Col>
+            </OutlineButton> 
+          </Col>
+        }
+        </Motion>
       </Row>
     )
   }

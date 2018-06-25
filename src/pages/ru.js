@@ -5,7 +5,7 @@ import { MainPage } from 'Blocks'
 
 import favicon from './favicon.png'
 
-const EnPage = ({ data: { homepage: { data } } }) => {
+const IndexPage = ({ data: { homepage: { data } } }) => {
   return (
     <Fragment>
       <Helmet
@@ -22,11 +22,11 @@ const EnPage = ({ data: { homepage: { data } } }) => {
   )
 }
 
-export default EnPage
+export default IndexPage
 
 export const query = graphql`
-  query EnQuery {
-    homepage: prismicDocument(type: {eq: "homepage"}, lang: {eq: "en-us"}) {
+  query IndexRuQuery {
+    homepage: prismicDocument(type: {eq: "homepage"}) {
       data {
         title {
           text

@@ -1,16 +1,26 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Button = styled.a`
-  background: black;
-  border-radius: .5rem;
+import { Button } from './Button'
+
+const Link = Button.withComponent('a')
+
+const LinkButton = Link.extend.attrs({
+  style: ({ background }) => ({
+    background
+  })
+})`
   color: white;
-  padding: .5rem 1.5rem;
   text-decoration: none;
 `
 
-export default ({ children, ...attrs }) => (
-  <Button {...attrs} >
+export default ({ children, color, ...attrs }) => (
+  <LinkButton 
+    style={{
+      background: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
+    }}
+    {...attrs} 
+  >
   { children }
-  </Button>
+  </LinkButton>
 )

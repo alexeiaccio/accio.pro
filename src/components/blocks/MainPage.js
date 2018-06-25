@@ -25,6 +25,7 @@ export default ({ data }) => (
         want: data.definitionswant,
         sites: data.definitionssites,
         list: data.definitionslist,
+        get: data.definitionget,
         verbs: data.definitionverbs,
         adjectives: data.definitionadjectives,
         nouns: data.definitionnouns,

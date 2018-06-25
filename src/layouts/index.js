@@ -9,7 +9,7 @@ class TemplateWrapper extends Component {
   componentDidMount = () => {
     const language = window.navigator.userLanguage || window.navigator.language
     language.includes('en') && navigateTo('/en')
-    language.includes('ru') && navigateTo('/')
+    language.includes('ru') && navigateTo('/ru')
   }
 
   render() {
