@@ -1,5 +1,6 @@
 export { default as AccioSVG } from './AccioSVG'
 export { default as LinkButton } from './LinkButton'
 export { default as Description } from './Description'
+export { default as LangSwitcher } from './LangSwitcher'
 export { default as MailLink } from './MailLink'
 export { default as OutlineButton } from './OutlineButton'

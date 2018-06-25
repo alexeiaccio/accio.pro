@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
 import { MainPage } from 'Blocks'
+import { LangSwitcher } from 'Elements'
 
 import favicon from './favicon.png'
 
@@ -18,6 +19,7 @@ const EnPage = ({ data: { homepage: { data } } }) => {
         <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       </Helmet>
       <MainPage {...{data}} />
+      <LangSwitcher to="ru" />
     </Fragment>
   )
 }

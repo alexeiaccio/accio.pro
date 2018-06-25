@@ -15,7 +15,7 @@ const baseStyles = () => injectGlobal`
   }
 
   body {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat Alternates';
     font-weight: 400;
     font-size: var(--base);
     line-height: var(--base);

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
 import { MainPage } from 'Blocks'
+import { LangSwitcher } from 'Elements'
 
 import favicon from './favicon.png'
 
@@ -18,6 +19,7 @@ const IndexPage = ({ data: { homepage: { data } } }) => {
         <link rel="icon" type="image/png" sizes="16x16" href={favicon} />
       </Helmet>
       <MainPage {...{data}} />
+      <LangSwitcher to="en" />
     </Fragment>
   )
 }
@@ -26,7 +28,7 @@ export default IndexPage
 
 export const query = graphql`
   query IndexRuQuery {
-    homepage: prismicDocument(type: {eq: "homepage"}) {
+    homepage: prismicDocument(type: {eq: "homepage"}, lang: {eq: "ru"}) {
       data {
         title {
           text

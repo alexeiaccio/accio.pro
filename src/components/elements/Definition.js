@@ -29,6 +29,7 @@ const DefinitionText = styled.span`
   height: 3rem;
   align-items: center;
   padding: 0 2rem;
+  white-space: nowrap;
 `
 
 class Definition extends Component {
