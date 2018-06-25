@@ -9,7 +9,10 @@ const LangSwitcher = styled(Link)`
   position: fixed;
   right: 1rem;
   top: 1rem;
-  text-decoration: none;
+  text-decoration: none;  
+  @media (max-width: 600px) {
+    color: white;
+  }
 `
 
 export default ({ to }) => (
