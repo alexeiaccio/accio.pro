@@ -6,17 +6,11 @@ import Definition from './Definition'
 import { default as LinkButton } from './LinkButton'
 import { default as OutlineButton } from './OutlineButton'
 
-const Animated = styled.span.attrs({
-  style: ({ color }) => ({
-    color
-  })
-})``
-
 const Row = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;  
+  flex-wrap: wrap;  
   height: auto;
   justify-content: flex-start;
   padding: 0 3rem;
@@ -28,14 +22,19 @@ const Col = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   font-size: 2rem;
   justify-content: flex-start;
 `
 
-const Spacer = styled.span`
-  content: '&nbsp;';
-  min-width: 1.75rem;
+const Animated = styled.span.attrs({
+  style: ({ color }) => ({
+    color
+  })
+})`
+  height: 3rem;
+  margin-right: 1.75rem;
+  white-space: nowrap;
 `
 
 class MailLink extends Component {
@@ -124,18 +123,15 @@ class MailLink extends Component {
                 color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
               }}            
             >{ this.props.definitions.get }</Animated>
-            <Spacer />
             <LinkButton 
               href={`${url}?subject=${this.props.definitions.get}%20${this.state.verb[0].text}%20${this.state.adj[0].text}%20${this.state.noun[0].text}`} 
               color={color}
             >            
               <Definition definitions={this.state.verb} color='white' />
-            </LinkButton>
-            <Spacer />   
+            </LinkButton>   
             <OutlineButton color={color} >
               <Definition definitions={this.state.adj} color={color} />
             </OutlineButton>
-            <Spacer />
             <OutlineButton color={color} >
               <Definition definitions={this.state.noun} color={color} />
             </OutlineButton> 

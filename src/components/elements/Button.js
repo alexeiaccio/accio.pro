@@ -5,5 +5,6 @@ export const Button = styled.span`
   border-radius: .75rem;
   display: inline-flex;
   justify-content: center;
+  margin: 0 1.75rem 1rem 0;
   overflow: hidden;
 `
