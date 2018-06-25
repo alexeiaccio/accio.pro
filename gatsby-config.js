@@ -17,7 +17,7 @@ module.exports = {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
         fonts: [
-          `Montserrat+Alternates\:400,400i`
+          `Montserrat+Alternates\:400,400i&amp;subset=cyrillic`
         ]
       }
     },

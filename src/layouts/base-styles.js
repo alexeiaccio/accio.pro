@@ -12,7 +12,7 @@ const baseStyles = () => injectGlobal`
   @media (max-width: 600px) {
     :root {
       --base: 2rem;
-      --color: #FFFFFF;
+      --color: #F2E8E8;
     }
   }
 
