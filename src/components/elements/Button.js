@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Button = styled.span`
   align-items: center;
-  border-radius: .5rem;
+  border-radius: .2rem;
   display: inline-flex;
   height: 3rem;
   justify-content: center;
