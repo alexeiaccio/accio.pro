@@ -6,11 +6,13 @@ const baseStyles = () => injectGlobal`
   /* BASE STYLES */
   :root {
   --base: 2rem;
+  --color: #261A12;
   }
 
   @media (max-width: 600px) {
     :root {
-      --base: 1.5rem;
+      --base: 2rem;
+      --color: #FFFFFF;
     }
   }
 
@@ -19,7 +21,11 @@ const baseStyles = () => injectGlobal`
     font-weight: 400;
     font-size: var(--base);
     line-height: var(--base);
-    color: #261A12;
+    color: var(--color);
+  }
+
+  em {
+    font-style: italic;
   }
 `
 

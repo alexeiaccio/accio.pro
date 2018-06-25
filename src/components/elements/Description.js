@@ -46,6 +46,7 @@ const Whatis = styled.span`
 
 const FixedTooltip = styled.span`
   background: white;
+  color: black;
   display: inline-block;
   left: 5rem;
   max-width: 64rem;
@@ -55,6 +56,12 @@ const FixedTooltip = styled.span`
   top: 5rem;
   z-index: 3000;
   box-shadow: 0px 0px 20px #2FC2C2;
+  @media (max-width: 600px) {
+    background: black;
+    color: white;
+    left: 2rem;
+    right: 2rem;
+  }
 `
 
 const Close = styled.span`
@@ -64,6 +71,9 @@ const Close = styled.span`
   position: absolute;
   right: 1rem;
   top: .5rem;
+  @media (max-width: 600px) {
+    color: white;
+  }
 `
 
 const withToggle = compose(
