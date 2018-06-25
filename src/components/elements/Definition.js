@@ -6,15 +6,29 @@ import { s4 } from 'Helpers'
 
 const Container = styled.span`
   display: inline-flex;
+  height: 3rem;
   flex-direction: column;
+  position: relative;
 `
 
 const LineThrough = styled.span.attrs({
-  style: ({ textDecorationColor }) => ({
-    textDecorationColor
+  style: ({ background, opacity }) => ({
+    background, 
+    opacity
   })
 })`
-  text-decoration: line-through dashed;
+  background-position: center;
+  display: inline-flex;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+`
+
+const DefinitionText = styled.span`
+  display: inline-flex;
+  height: 3rem;
+  align-items: center;
+  padding: 0 2rem;
 `
 
 class Definition extends Component {
@@ -86,20 +100,25 @@ class Definition extends Component {
         willEnter={this.willEnter}
       >
       {styles =>
-        <Container>
+        <Container> 
         {styles.map(({key, style, data: {text}}, i) =>
-          <span key={i} style={style}>
-          {text.includes('не')
-            ? <LineThrough style={{
-              textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
-            }}>{text.replace(/не\s?/i, '')}</LineThrough>
-            : text.includes('not')
-            ? <LineThrough style={{
-              textDecorationColor: `rgb(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)})`
-              }}>{text.replace(/not\s/i, '')}</LineThrough>
-            : text
-          }
-          </span>
+          <Fragment>            
+            <span key={i} style={style}>
+            {text.includes('не') || text.includes('not')
+              ? <DefinitionText>
+                { text.replace(/не\s?/i, '').replace(/not\s/i, '') }
+                </DefinitionText>
+              : <DefinitionText>{ text }</DefinitionText>
+            }
+            </span>
+            {text.includes('не') || text.includes('not')
+              ? <LineThrough key={i} style={{
+                  background: `linear-gradient(165deg, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 45%,rgba(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)},1) 46%,rgba(${Math.floor(this.props.color.b % 255)}, 0, ${Math.floor(this.props.color.g % 255)},1) 54%,rgba(255,255,255,0) 55%,rgba(255,255,255,0) 100%)`,
+                  opacity: style.opacity
+                }} />
+              : null
+            }
+          </Fragment>
         )}
         </Container>
       }
@@ -109,3 +128,7 @@ class Definition extends Component {
 }
 
 export default Definition
+
+/* 
+;
+*/

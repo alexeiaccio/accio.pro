@@ -16,8 +16,7 @@ const Row = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  font-size: 2rem;
+  flex-wrap: nowrap;  
   height: auto;
   justify-content: flex-start;
   padding: 0 3rem;
@@ -30,7 +29,13 @@ const Col = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  font-size: 2rem;
   justify-content: flex-start;
+`
+
+const Spacer = styled.span`
+  content: '&nbsp;';
+  min-width: 1.75rem;
 `
 
 class MailLink extends Component {
@@ -119,18 +124,18 @@ class MailLink extends Component {
                 color: `rgb(0, ${Math.floor(color.g % 255)}, ${Math.floor(color.b % 255)})`
               }}            
             >{ this.props.definitions.get }</Animated>
-            <span>&nbsp;</span>
+            <Spacer />
             <LinkButton 
               href={`${url}?subject=${this.props.definitions.get}%20${this.state.verb[0].text}%20${this.state.adj[0].text}%20${this.state.noun[0].text}`} 
               color={color}
             >            
               <Definition definitions={this.state.verb} color='white' />
             </LinkButton>
-            <span>&nbsp;</span>   
+            <Spacer />   
             <OutlineButton color={color} >
               <Definition definitions={this.state.adj} color={color} />
             </OutlineButton>
-            <span>&nbsp;</span>
+            <Spacer />
             <OutlineButton color={color} >
               <Definition definitions={this.state.noun} color={color} />
             </OutlineButton> 
