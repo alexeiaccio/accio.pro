@@ -10,6 +10,7 @@ const Row = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: row;
+  flex-shrink: 0;
   flex-wrap: wrap;  
   height: auto;
   justify-content: flex-start;
