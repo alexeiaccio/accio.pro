@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import { compose, withState, withHandlers } from 'recompose'
 import { RichText } from 'prismic-reactjs'
 import styled from 'styled-components'
 
