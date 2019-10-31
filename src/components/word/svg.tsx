@@ -1,7 +1,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { css } from '@emotion/core'
-import { useMeasure } from 'react-use'
+// import { useMeasure } from 'react-use'
 
 import { Image } from '../../typings/image'
 import { Img } from '../img'
@@ -20,9 +20,9 @@ export function WordSVG({ image, word, theme = '(var(--bg-color)', clipped }: Pr
   
   const text = word.replace(' ', '')
   const src = get(image, 'localFile.childImageSharp.fluid.src', get(image, 'url'))
-  const [ref, { height }] = useMeasure()
+  // const [ref, { height }] = useMeasure()
 
-  console.log(height)
+  // console.log(height)
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +36,7 @@ export function WordSVG({ image, word, theme = '(var(--bg-color)', clipped }: Pr
         ${svgStyles};
         color: ${theme};
       `}
-      ref={ref}
+      // ref={ref}
     >
       <defs>
         <LetterForSVG
