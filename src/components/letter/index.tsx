@@ -16,7 +16,7 @@ export function Letter({ letter, width = 100 }: Props) {
       css={css`
         font-size: calc(2.25em + 10 * (${width}vw / ${width / 2}));
         max-width: ${width}%;
-        text-shadow: 0 0 1px var(--text-color);
+        text-shadow: 0 0 1.25px var(--text-color);
         transition: color 400ms ease-in-out;
         &:hover {
           color: var(--text-color);

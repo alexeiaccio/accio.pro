@@ -15,7 +15,7 @@ export function LetterForSVG({ letter, ...props }: Props) {
   return (
     <text
       css={css`
-        font-size: calc(7em + 1vw);
+        font-size: calc(9.5em + 1vw);
       `}
       {...props}
     >

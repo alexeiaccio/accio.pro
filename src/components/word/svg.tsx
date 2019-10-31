@@ -1,6 +1,7 @@
 import React from 'react'
 import { get } from 'lodash'
 import { css } from '@emotion/core'
+import { useMeasure } from 'react-use'
 
 import { Image } from '../../typings/image'
 import { Img } from '../img'
@@ -12,19 +13,20 @@ type Props = Readonly<{
   image?: Image
   theme?: string
   clipped?: boolean
-  viewBox?: string
 }>
 
-export function WordSVG({ image, word, theme = '(var(--bg-color)', clipped, viewBox = `0 0 600 160` }: Props) {
+export function WordSVG({ image, word, theme = '(var(--bg-color)', clipped }: Props) {
   if (!word || (word && word.length === 0)) return null
   
   const text = word.replace(' ', '')
   const src = get(image, 'localFile.childImageSharp.fluid.src', get(image, 'url'))
+  const [ref, { height }] = useMeasure()
 
+  console.log(height)
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox={viewBox}
+      viewBox={`0 0 ${100 * word.length} 160`}
       className={`
         font-accio
         select-none
@@ -34,6 +36,7 @@ export function WordSVG({ image, word, theme = '(var(--bg-color)', clipped, view
         ${svgStyles};
         color: ${theme};
       `}
+      ref={ref}
     >
       <defs>
         <LetterForSVG
