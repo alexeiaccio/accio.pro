@@ -4,20 +4,24 @@
   "version": "0.1.0",
   "author": "Alexei Accio <ciao@accio.pro>",
   "dependencies": {
-    "gatsby": "^1.9.261",
-    "gatsby-link": "^1.6.39",
-    "gatsby-plugin-google-fonts": "^0.0.4",
-    "gatsby-plugin-react-helmet": "^2.0.8",
-    "gatsby-plugin-react-next": "^1.0.11",
-    "gatsby-plugin-styled-components": "^2.0.11",
-    "gatsby-plugin-yandex-metrika": "^1.2.1",
-    "gatsby-source-prismic": "^0.1.4",
-    "prismic-reactjs": "^0.3.1",
-    "react-helmet": "^5.2.0",
-    "react-motion": "^0.5.2",
-    "recompose": "^0.27.1",
-    "styled-components": "^3.2.3",
-    "styled-reset": "^1.3.3"
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.22",
+    "@types/react": "^16.9.11",
+    "autoprefixer": "^9.7.0",
+    "gatsby": "^2.17.7",
+    "gatsby-image": "^2.2.29",
+    "gatsby-plugin-sharp": "^2.2.32",
+    "gatsby-plugin-typescript": "^2.1.15",
+    "gatsby-source-filesystem": "^2.1.33",
+    "gatsby-source-prismic": "^3.0.0-beta.11",
+    "gatsby-theme-tailwindcss": "^1.0.2",
+    "gatsby-transformer-sharp": "^2.3.0",
+    "lodash": "^4.17.15",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-use": "^12.11.0",
+    "typescript": "^3.6.4",
+    "uuid": "^3.3.3"
   },
   "keywords": [
     "gatsby"
@@ -27,12 +31,12 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
-    "format": "prettier --write 'src/**/*.js'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "gatsby clean"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-plugin-react": "^7.7.0",
-    "prettier": "^1.11.1"
+    "@emotion/babel-preset-css-prop": "^10.0.22",
+    "babel-preset-gatsby": "^0.2.20",
+    "dotenv": "^8.2.0",
+    "tailwind.macro": "^1.0.0-alpha.10"
   }
 }

@@ -3,32 +3,33 @@ module.exports = {
     title: 'Accio',
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-react-next',
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
+    {
+      resolve: `gatsby-theme-tailwindcss`,
+      options: {
+        postCssPlugins: [require('autoprefixer')],
+      },
+    },
+    'gatsby-plugin-sharp',
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-prismic`,
       options: {
-        repositoryName: `accio`,
-        accessToken: `MC5Xcm53OWlVQUFOVUlCWm1X.77-977-9Y3zvv73vv71977-9Q--_vXXvv73vv70b77-9RCPvv73vv73vv702UO-_vWkHd--_ve-_ve-_ve-_ve-_vWA`,
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-google-fonts',
-      options: {
-        fonts: [
-          `Montserrat+Alternates\:400,400i&amp;subset=cyrillic`
-        ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-yandex-metrika`,
-      options: {
-        trackingId: '49370842',
-        webvisor: true,
-        trackHash: true,
-        version: 2,
+        repositoryName: 'accio-folio',
+        accessToken: `MC5YYmJ4QXhBQUFDUUEzNTVa.NO-_vU7vv73vv71A77-977-977-9TO-_vSfvv71_77-9C1fvv71hdu-_ve-_ve-_ve-_vRPvv70x77-977-977-9cu-_vQ`,
+        linkResolver: () => doc => doc.slug,
+        schemas: {
+          page: require('./src/schemas/page.json'),
+          work: require('./src/schemas/work.json'),
+        },
       },
     },
   ],
-};
+}
