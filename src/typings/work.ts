@@ -10,7 +10,9 @@ export interface WorkBodyText {
 export interface WorkBodyImageGallery {
   __typename: 'PrismicWorkBodyImageGallery'
   items: Array<Gallery> | null
-  primary: null
+  primary: {
+    type: 'list' | 'left' | 'right' | 'slider' | 'comparison'
+  }
 }
 
 export type WorkBody = (WorkBodyText | WorkBodyImageGallery)

@@ -1,18 +1,20 @@
+import { Maybe } from './index';
+
 interface LocalImg {
-  sizes: string | null
-  srcSet: string | null
-  src: string | null
-  aspectRatio: number | null
-  tracedSVG: string | null
+  sizes: Maybe<string>
+  srcSet: Maybe<string>
+  src: Maybe<string>
+  aspectRatio: Maybe<number>
+  tracedSVG: Maybe<string>
 }
 
 export interface Image {
-  alt: string | null
-  src: string | null
-  localFile?: {
-    childImageSharp: {
-      fluid: LocalImg | null,
-      fixed: LocalImg | null,
-    } | null
-  }
+  alt: Maybe<string>
+  src: Maybe<string>
+  localFile: Maybe<{
+    childImageSharp: Maybe<{
+      fluid: Maybe<LocalImg>,
+      fixed: Maybe<LocalImg>,
+    }>
+  }>
 }

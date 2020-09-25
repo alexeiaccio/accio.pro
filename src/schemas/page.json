@@ -47,12 +47,40 @@
               }
             }
           },
+          "text": {
+            "type": "Slice",
+            "fieldset": "Text",
+            "description": "Rich Text Section",
+            "icon": "text_fields",
+            "non-repeat": {
+              "text": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "text",
+                  "placeholder": "Your content here"
+                }
+              }
+            },
+            "repeat": {}
+          },
           "image_gallery": {
             "type": "Slice",
             "fieldset": "Image Gallery",
             "description": "Image Gallery",
             "icon": "photo_library",
-            "non-repeat": {},
+            "non-repeat": {
+              "gallerytype": {
+                "type": "Select",
+                "config": {
+                  "options": ["list", "left", "right", "slider", "comparison"],
+                  "default_value": "list",
+                  "label": "Type",
+                  "placeholder": "Type"
+                }
+              }
+            },
             "repeat": {
               "gallerycaptions": {
                 "type": "StructuredText",
@@ -76,24 +104,6 @@
               }
             },
             "display": "list"
-          },
-          "text": {
-            "type": "Slice",
-            "fieldset": "Text",
-            "description": "Rich Text Section",
-            "icon": "text_fields",
-            "non-repeat": {
-              "text": {
-                "type": "StructuredText",
-                "config": {
-                  "multi": "paragraph, preformatted, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
-                  "allowTargetBlank": true,
-                  "label": "text",
-                  "placeholder": "Your content here"
-                }
-              }
-            },
-            "repeat": {}
           }
         }
       }

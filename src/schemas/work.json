@@ -63,7 +63,17 @@
             "fieldset": "Image Gallery",
             "description": "Image Gallery",
             "icon": "photo_library",
-            "non-repeat": {},
+            "non-repeat": {
+              "gallerytype": {
+                "type": "Select",
+                "config": {
+                  "options": ["list", "left", "right", "slider", "comparison"],
+                  "default_value": "list",
+                  "label": "Type",
+                  "placeholder": "Type"
+                }
+              }
+            },
             "repeat": {
               "gallerycaptions": {
                 "type": "StructuredText",

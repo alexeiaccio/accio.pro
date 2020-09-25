@@ -71,6 +71,9 @@ export const query = graphql`
             }
           }
           ... on PrismicPageBodyImageGallery {
+            primary {
+              type
+            }
             items {
               galleryimage {
                 alt

@@ -15,7 +15,9 @@ export interface PageBodyText {
 export interface PageBodyImageGallery {
   __typename: 'PrismicPageBodyImageGallery'
   items: Array<Gallery> | null
-  primary: null
+  primary: {
+    type: 'list' | 'left' | 'right' | 'slider' | 'comparison'
+  }
 }
 
 export type PageBody = (PageBodyWork | PageBodyText | PageBodyImageGallery)
